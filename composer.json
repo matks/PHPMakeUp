@@ -1,0 +1,35 @@
+{
+    "name": "matks/php-makeup",
+    "description": "PHP tool to increase the readabiliy of your code",
+    "type": "library",
+    "keywords": [
+        "php",
+        "code",
+        "cleaner"
+    ],
+    "homepage": "https://github.com/matks/PHPMakeUp",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Mathieu Ferment",
+            "email": "mathieu.ferment@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+    },
+    "require-dev": {
+        "atoum/atoum" : "dev-master"
+    },
+    "autoload": {
+        "psr-0" : {
+            "Matks\\PHPMakeUp" : "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
+    }
+}
