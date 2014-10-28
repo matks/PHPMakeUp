@@ -17,14 +17,15 @@
         }
     ],
     "require": {
-        "php": ">=5.3.3"
+        "php": ">=5.4.0"
     },
     "require-dev": {
         "atoum/atoum" : "dev-master"
     },
     "autoload": {
         "psr-0" : {
-            "Matks\\PHPMakeUp" : "src/"
+            "Matks\\PHPMakeUp" : "src/",
+            "Matks\\PHPMakeUpTest" : "tests/Util/"
         }
     },
     "extra": {
