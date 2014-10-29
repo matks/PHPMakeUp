@@ -7,3 +7,11 @@ Features
 --------
 
 * variables assignment alignment
+
+Running PHPMakeUp
+-----------------
+
+Run the following command:
+```bash
+$ php php-make-up.php <filepath>
+```
