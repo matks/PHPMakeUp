@@ -2,6 +2,9 @@
 
 namespace Matks\PHPMakeUp;
 
+use Matks\PHPMakeUp\File\FileManager;
+use Matks\PHPMakeUp\Line\LineAligner;
+
 /**
  * PHPMakeUp Launcher
  */
@@ -37,7 +40,10 @@ class Launcher
 	 */
     private function setup()
     {
-        $phpCleaner = new phpCleaner();
+        $fileManager = new FileManager();
+        $lineAligner = new LineAligner($fileManager);
+
+        $phpCleaner = new phpCleaner($lineAligner);
 
         return $phpCleaner;
     }

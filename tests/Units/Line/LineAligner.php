@@ -5,6 +5,7 @@ namespace Matks\PHPMakeUp\tests\Units\Line;
 use Matks\PHPMakeUp\Line;
 
 use \atoum;
+use Mock;
 
 class LineAligner extends atoum
 {
@@ -12,27 +13,35 @@ class LineAligner extends atoum
 
     public function testConstruct()
     {
-        // just check class can be instantiated
-        $aligner = new Line\LineAligner();
+        $fileManagerMock = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
+        $aligner = new Line\LineAligner($fileManagerMock);
+
+        $this
+            ->class(get_class($aligner))
+                ->hasInterface('\Matks\PHPMakeUp\Line\LineAlignerInterface')
+        ;
     }
 
     public function testAlign()
     {
+        $fileManagerMock = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
         $testFilename = 'aClass.php';
-        $this->setupFixture($testFilename);
+        $copyFilename = 'aClass.php.copy';
 
-        $aligner = new Line\LineAligner();
+        $aligner = new Line\LineAligner($fileManagerMock);
 
         $testFilepath = $this->getTestDirectory() . $testFilename;
+        $copyFilepath = $this->getTestDirectory() . $copyFilename;
         $aligner->align($testFilepath);
 
         $expectedFilepath = $this->getExpectedFilesDirectory() . $testFilename;
+        $expectedContent  = file($expectedFilepath);
 
         $this
-            ->string(file_get_contents($testFilepath))
-                ->isEqualTo(file_get_contents($expectedFilepath))
+            ->mock($fileManagerMock)
+                ->call('writeFile')
+                    ->withIdenticalArguments($copyFilepath, $expectedContent)
+                    ->once()
         ;
-
-        $this->clearFixture($testFilename);
     }
 }

@@ -3,6 +3,7 @@
 namespace Matks\PHPMakeUp\Line;
 
 use Matks\PHPMakeUp\Line\VariableAssignmentLine as Line;
+use RuntimeException;
 
 class VariableAssignmentLineBlock
 {
@@ -36,6 +37,10 @@ class VariableAssignmentLineBlock
     {
         $lines = $this->lines;
 
+        if (empty($lines)) {
+            throw new RuntimeException('Cannot get first line, no lines in this block');
+        }
+
         return $lines[0];
     }
 
@@ -52,14 +57,15 @@ class VariableAssignmentLineBlock
     public function getAlignment()
     {
         $highestLength = 0;
-
         foreach ($this->lines as $line) {
             $partBefore = $line->getPartBefore();
 
             if (strlen($partBefore) > $highestLength) {
                 $highestLength = strlen($partBefore);
             }
-        }  return $highestLength;
+        }
+
+        return $highestLength;
     }
 
     public function isValid()

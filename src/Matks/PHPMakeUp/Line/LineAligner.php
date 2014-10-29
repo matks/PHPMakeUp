@@ -2,14 +2,37 @@
 
 namespace Matks\PHPMakeUp\Line;
 
+use Matks\PHPMakeUp\File\FileManagerInterface;
 use Matks\PHPMakeUp\Line\VariableAssignmentLineBlock as Block;
 use Matks\PHPMakeUp\Line\VariableAssignmentLine as Line;
 use Exception;
 
-class LineAligner
+/**
+ * Line Alignment manager
+ */
+class LineAligner implements LineAlignerInterface
 {
+    /**
+     * Variable assignment code line regex
+     */
     const VARIABLE_ASSIGNMENT_REGEX = '([^=]*)=(.*)$';
 
+    /**
+     * Constructor
+     *
+     * @param FileManagerInterface $fileManager
+     */
+    public function __construct(FileManagerInterface $fileManager)
+    {
+        $this->fileManager = $fileManager;
+    }
+
+    /**
+     * Search and align variable assignments code lines in a file
+     *
+     * @param  string    $filepath
+     * @throws Exception
+     */
     public function align($filepath)
     {
         if (!file_exists($filepath)) {
@@ -19,9 +42,19 @@ class LineAligner
         $blocks = $this->findBlocks($filepath);
         $validBlocks = $this->getValidBlocks($blocks);
 
-        $this->createCleanedFile($filepath, $validBlocks);
+        $fileLines = $this->createCleanedFile($filepath, $validBlocks);
+
+        $newFilepath = $filepath . '.copy';
+        $this->fileManager->writeFile($newFilepath, $fileLines);
+        $this->fileManager->replaceFile($filepath, $newFilepath);
     }
 
+    /**
+     * Find in given eligible VariableAssignmentLineBlocks
+     *
+     * @param  string $filepath
+     * @return array
+     */
     private function findBlocks($filepath)
     {
         $lines = file($filepath);
@@ -58,6 +91,12 @@ class LineAligner
         return $blocks;
     }
 
+    /**
+     * Clean file lines according to found VariableAssignmentLineBlocks
+     *
+     * @param string $filepath
+     * @param array  $blocks
+     */
     private function createCleanedFile($filepath, array $blocks)
     {
         $fileLines = file($filepath);
@@ -77,12 +116,15 @@ class LineAligner
             }
         }
 
-        $newFilepath = $filepath . '.copy';
-        $this->writeFile($newFilepath, $fileLines);
-
-        $this->replaceFiles($filepath, $newFilepath);
+        return $fileLines;
     }
 
+    /**
+     * Build alignment space
+     *
+     * @param  integer $length
+     * @return string
+     */
     private function buildAlignmentSpace($length)
     {
         $space = '';
@@ -93,6 +135,12 @@ class LineAligner
         return $space;
     }
 
+    /**
+     * Filter valid blocks from given array of VariableAssignmentLineBlock
+     *
+     * @param  array $blocks array of VariableAssignmentLineBlock
+     * @return array of valid VariableAssignmentLineBlock
+     */
     private function getValidBlocks(array $blocks)
     {
         $result = array();
@@ -104,31 +152,5 @@ class LineAligner
         }
 
         return $result;
-    }
-
-    private function writeFile($filepath, array $lines)
-    {
-        if (file_exists($filepath)) {
-            throw new Exception("File $filepath does exist");
-        }
-
-        $file = fopen($filepath, 'w');
-        foreach ($lines as $line) {
-            fwrite($file, $line);
-        }
-        fclose($file);
-    }
-
-    private function replaceFiles($oldFilepath, $newFilepath)
-    {
-        if (!file_exists($oldFilepath)) {
-            throw new Exception("File $oldFilepath does not exist");
-        }
-        if (!file_exists($newFilepath)) {
-            throw new Exception("File $newFilepath does not exist");
-        }
-
-        unlink($oldFilepath);
-        rename($newFilepath, $oldFilepath);
     }
 }

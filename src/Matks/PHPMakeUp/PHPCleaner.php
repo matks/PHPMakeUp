@@ -2,7 +2,7 @@
 
 namespace Matks\PHPMakeUp;
 
-use Matks\PHPMakeUp\Line\LineAligner;
+use Matks\PHPMakeUp\Line\LineAlignerInterface;
 
 class PHPCleaner
 {
@@ -13,7 +13,7 @@ class PHPCleaner
      */
     private $lineAligner;
 
-    public function __construct(LineAligner $lineAligner)
+    public function __construct(LineAlignerInterface $lineAligner)
     {
         $this->lineAligner = $lineAligner;
     }
