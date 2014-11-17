@@ -5,16 +5,22 @@ namespace Matks\PHPMakeUp\LineAlignment;
 use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine as Line;
 use RuntimeException;
 
+/**
+ * Variable Assignment Line Block
+ */
 class VariableAssignmentLineBlock
 {
     const STATUS_NEW   = 'new';
     const STATUS_VALID = 'valid';
 
     /**
-     * @var Line
+     * @var Line[]
      */
     private $lines = array();
 
+    /**
+     * @var string
+     */
     private $status;
 
     public function __construct()
@@ -22,6 +28,11 @@ class VariableAssignmentLineBlock
         $this->status = static::STATUS_NEW;
     }
 
+    /**
+     * @param VariableAssignmentLine $line
+     *
+     * @return $this
+     */
     public function addLine(Line $line)
     {
         $this->lines[] = $line;
@@ -33,6 +44,9 @@ class VariableAssignmentLineBlock
         return $this;
     }
 
+    /**
+     * @return VariableAssignmentLine
+     */
     public function getFirstLine()
     {
         $lines = $this->lines;
@@ -44,16 +58,25 @@ class VariableAssignmentLineBlock
         return $lines[0];
     }
 
+    /**
+     * @return VariableAssignmentLine[]
+     */
     public function getLines()
     {
         return $this->lines;
     }
 
+    /**
+     * @return int
+     */
     public function count()
     {
         return count($this->lines);
     }
 
+    /**
+     * @return int
+     */
     public function getAlignment()
     {
         $highestLength = 0;
@@ -68,6 +91,9 @@ class VariableAssignmentLineBlock
         return $highestLength;
     }
 
+    /**
+     * @return bool
+     */
     public function isValid()
     {
         return (static::STATUS_VALID === $this->status);

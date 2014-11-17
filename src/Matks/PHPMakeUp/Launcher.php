@@ -7,6 +7,8 @@ use Matks\PHPMakeUp\LineAlignment\LineAligner;
 
 /**
  * PHPMakeUp Launcher
+ *
+ * This class setups the PHPMakeUp tool
  */
 class Launcher
 {
@@ -24,6 +26,8 @@ class Launcher
 
     /**
      * Run
+     *
+     * @param string $filepath
      */
     public function run($filepath)
     {
