@@ -1,8 +1,8 @@
 <?php
 
-namespace Matks\PHPMakeUp\tests\Units\Line;
+namespace Matks\PHPMakeUp\tests\Units\LineAlignment;
 
-use Matks\PHPMakeUp\Line;
+use Matks\PHPMakeUp\LineAlignment;
 
 use \atoum;
 use Mock;
@@ -14,11 +14,11 @@ class LineAligner extends atoum
     public function testConstruct()
     {
         $fileManagerMock = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
-        $aligner         = new Line\LineAligner($fileManagerMock);
+        $aligner         = new LineAlignment\LineAligner($fileManagerMock);
 
         $this
             ->class(get_class($aligner))
-            ->hasInterface('\Matks\PHPMakeUp\Line\LineAlignerInterface');
+            ->hasInterface('\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface');
     }
 
     public function testAlign()
@@ -27,7 +27,7 @@ class LineAligner extends atoum
         $testFilename    = 'aClass.php';
         $copyFilename    = 'aClass.php.copy';
 
-        $aligner = new Line\LineAligner($fileManagerMock);
+        $aligner = new LineAlignment\LineAligner($fileManagerMock);
 
         $testFilepath = $this->getTestDirectory() . $testFilename;
         $copyFilepath = $this->getTestDirectory() . $copyFilename;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Matks\PHPMakeUp\Line;
+namespace Matks\PHPMakeUp\LineAlignment;
 
 interface LineAlignerInterface
 {

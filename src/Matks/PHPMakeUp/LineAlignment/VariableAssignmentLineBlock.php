@@ -1,8 +1,8 @@
 <?php
 
-namespace Matks\PHPMakeUp\Line;
+namespace Matks\PHPMakeUp\LineAlignment;
 
-use Matks\PHPMakeUp\Line\VariableAssignmentLine as Line;
+use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine as Line;
 use RuntimeException;
 
 class VariableAssignmentLineBlock

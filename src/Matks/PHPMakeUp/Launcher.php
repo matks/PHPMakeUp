@@ -3,7 +3,7 @@
 namespace Matks\PHPMakeUp;
 
 use Matks\PHPMakeUp\File\FileManager;
-use Matks\PHPMakeUp\Line\LineAligner;
+use Matks\PHPMakeUp\LineAlignment\LineAligner;
 
 /**
  * PHPMakeUp Launcher

@@ -11,13 +11,13 @@ class PHPCleaner extends atoum
 {
     public function testConstruct()
     {
-        $aligner = new Mock\Matks\PHPMakeUp\Line\LineAlignerInterface();
+        $aligner = new Mock\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface();
         $cleaner = new PHPMakeUp\PHPCleaner($aligner);
     }
 
     public function testClean()
     {
-        $aligner = new Mock\Matks\PHPMakeUp\Line\LineAlignerInterface();
+        $aligner = new Mock\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface();
         $cleaner = new PHPMakeUp\PHPCleaner($aligner);
 
         $path = './.././..';

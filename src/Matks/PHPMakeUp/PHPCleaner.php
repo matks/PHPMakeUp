@@ -2,7 +2,7 @@
 
 namespace Matks\PHPMakeUp;
 
-use Matks\PHPMakeUp\Line\LineAlignerInterface;
+use Matks\PHPMakeUp\LineAlignment\LineAlignerInterface;
 
 class PHPCleaner
 {

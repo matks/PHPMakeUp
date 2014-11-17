@@ -1,8 +1,8 @@
 <?php
 
-namespace Matks\PHPMakeUp\tests\Units\Line;
+namespace Matks\PHPMakeUp\tests\Units\LineAlignment;
 
-use Matks\PHPMakeUp\Line;
+use Matks\PHPMakeUp\LineAlignment;
 
 use \atoum;
 use Mock;
@@ -11,7 +11,7 @@ class VariableAssignmentLineBlock extends atoum
 {
     public function testConstruct()
     {
-        $block = new Line\VariableAssignmentLineBlock();
+        $block = new LineAlignment\VariableAssignmentLineBlock();
 
         $this
             ->array($block->getLines())
@@ -34,9 +34,9 @@ class VariableAssignmentLineBlock extends atoum
 
     public function testAddOneLine()
     {
-        $lineMock1 = new Mock\Matks\PHPMakeUp\Line\VariableAssignmentLine(5, '2 ', 'foo');
+        $lineMock1 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(5, '2 ', 'foo');
 
-        $block = new Line\VariableAssignmentLineBlock();
+        $block = new LineAlignment\VariableAssignmentLineBlock();
 
         $block->addLine($lineMock1);
 
@@ -55,11 +55,11 @@ class VariableAssignmentLineBlock extends atoum
 
     public function testAddMultipleLines()
     {
-        $lineMock1 = new Mock\Matks\PHPMakeUp\Line\VariableAssignmentLine(5, '2 ', ' foo');
-        $lineMock2 = new Mock\Matks\PHPMakeUp\Line\VariableAssignmentLine(6, 'aaaa ', 'b');
-        $lineMock3 = new Mock\Matks\PHPMakeUp\Line\VariableAssignmentLine(7, 'j  ', ' b');
+        $lineMock1 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(5, '2 ', ' foo');
+        $lineMock2 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(6, 'aaaa ', 'b');
+        $lineMock3 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(7, 'j  ', ' b');
 
-        $block = new Line\VariableAssignmentLineBlock();
+        $block = new LineAlignment\VariableAssignmentLineBlock();
 
         $block->addLine($lineMock1);
         $block->addLine($lineMock2);

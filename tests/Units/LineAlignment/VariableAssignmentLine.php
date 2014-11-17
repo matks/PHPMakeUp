@@ -1,8 +1,8 @@
 <?php
 
-namespace Matks\PHPMakeUp\tests\Units\Line;
+namespace Matks\PHPMakeUp\tests\Units\LineAlignment;
 
-use Matks\PHPMakeUp\Line;
+use Matks\PHPMakeUp\LineAlignment;
 
 use \atoum;
 
@@ -10,7 +10,7 @@ class VariableAssignmentLine extends atoum
 {
     public function testConstruct()
     {
-        $line = new Line\VariableAssignmentLine(2, 'a', 'b');
+        $line = new LineAlignment\VariableAssignmentLine(2, 'a', 'b');
 
         $this
             ->integer($line->getLineNumber())

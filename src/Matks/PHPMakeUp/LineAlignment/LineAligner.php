@@ -1,10 +1,10 @@
 <?php
 
-namespace Matks\PHPMakeUp\Line;
+namespace Matks\PHPMakeUp\LineAlignment;
 
 use Matks\PHPMakeUp\File\FileManagerInterface;
-use Matks\PHPMakeUp\Line\VariableAssignmentLineBlock as Block;
-use Matks\PHPMakeUp\Line\VariableAssignmentLine as Line;
+use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLineBlock as Block;
+use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine as Line;
 use Exception;
 
 /**
