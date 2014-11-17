@@ -6,25 +6,25 @@ class VariableAssignmentLine
 {
 
     /**
-	 * @var integer
-	 */
+     * @var integer
+     */
     private $lineNumber;
 
     /**
-	 * @var integer
-	 */
+     * @var integer
+     */
     private $partBefore;
 
     /**
-	 * @var integer
-	 */
+     * @var integer
+     */
     private $partAfter;
 
     public function __construct($lineNumber, $partBefore, $partAfter)
     {
-        $this->lineNumber  = $lineNumber;
-        $this->partBefore  = $partBefore;
-        $this->partAfter   = $partAfter;
+        $this->lineNumber = $lineNumber;
+        $this->partBefore = $partBefore;
+        $this->partAfter  = $partAfter;
     }
 
     public function getLineNumber()

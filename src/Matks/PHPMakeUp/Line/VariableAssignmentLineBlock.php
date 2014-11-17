@@ -7,12 +7,12 @@ use RuntimeException;
 
 class VariableAssignmentLineBlock
 {
-    const STATUS_NEW = 'new';
+    const STATUS_NEW   = 'new';
     const STATUS_VALID = 'valid';
 
     /**
-	 * @var Line
-	 */
+     * @var Line
+     */
     private $lines = array();
 
     private $status;

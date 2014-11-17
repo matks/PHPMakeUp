@@ -25,9 +25,8 @@ class PHPCleaner extends atoum
 
         $this
             ->mock($aligner)
-                ->call('align')
-                    ->withIdenticalArguments($path)
-                    ->once()
-        ;
+            ->call('align')
+            ->withIdenticalArguments($path)
+            ->once();
     }
 }

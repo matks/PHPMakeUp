@@ -14,11 +14,10 @@ class VariableAssignmentLine extends atoum
 
         $this
             ->integer($line->getLineNumber())
-                ->isEqualTo(2)
+            ->isEqualTo(2)
             ->string($line->getPartBefore())
-                ->isEqualTo('a')
+            ->isEqualTo('a')
             ->string($line->getPartAfter())
-                ->isEqualTo('b')
-        ;
+            ->isEqualTo('b');
     }
 }

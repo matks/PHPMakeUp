@@ -16,13 +16,12 @@ class FileManager extends atoum
 
         $this
             ->class(get_class($manager))
-                ->hasInterface('\Matks\PHPMakeUp\File\FileManagerInterface')
-        ;
+            ->hasInterface('\Matks\PHPMakeUp\File\FileManagerInterface');
     }
 
     public function testWriteFile()
     {
-        $lines = array(
+        $lines        = array(
             'line 1' . PHP_EOL,
             'line 2' . PHP_EOL,
             'last line' . PHP_EOL,
@@ -36,10 +35,9 @@ class FileManager extends atoum
 
         $this
             ->boolean(file_exists($testFilepath))
-                ->isTrue()
+            ->isTrue()
             ->string(file_get_contents($testFilepath))
-                ->isEqualTo($expectedFileContent)
-        ;
+            ->isEqualTo($expectedFileContent);
 
         $this->clearFixture('newFile.txt');
     }
@@ -57,12 +55,11 @@ class FileManager extends atoum
 
         $this
             ->boolean(file_exists($testFilepath))
-                ->isTrue()
+            ->isTrue()
             ->boolean(file_exists($newFilepath))
-                ->isFalse()
+            ->isFalse()
             ->string(file_get_contents($testFilepath))
-                ->isEqualTo('<a>foo</a>')
-        ;
+            ->isEqualTo('<a>foo</a>');
 
         $this->clearFixture('file-to-replace.txt');
     }

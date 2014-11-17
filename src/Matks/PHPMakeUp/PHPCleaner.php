@@ -9,6 +9,7 @@ class PHPCleaner
 
     /**
      * Lines Aligner tool
+     *
      * @var LineAligner
      */
     private $lineAligner;

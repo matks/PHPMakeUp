@@ -11,8 +11,8 @@ class FileManager implements FileManagerInterface
 {
     /**
      * @param string $filepath
-	 * @param  array  $lines
-	 */
+     * @param array  $lines
+     */
     public function writeFile($filepath, array $lines)
     {
         if (file_exists($filepath)) {

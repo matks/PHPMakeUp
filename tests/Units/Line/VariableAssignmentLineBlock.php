@@ -15,14 +15,13 @@ class VariableAssignmentLineBlock extends atoum
 
         $this
             ->array($block->getLines())
-                ->isEmpty()
+            ->isEmpty()
             ->boolean($block->isValid())
-                ->isFalse()
+            ->isFalse()
             ->integer($block->getAlignment())
-                ->isEqualTo(0)
+            ->isEqualTo(0)
             ->integer($block->count())
-                ->isEqualTo(0)
-        ;
+            ->isEqualTo(0);
 
         $this
             ->exception(
@@ -30,8 +29,7 @@ class VariableAssignmentLineBlock extends atoum
                     $block->getFirstLine();
                 }
             )
-                ->hasMessage('Cannot get first line, no lines in this block')
-        ;
+            ->hasMessage('Cannot get first line, no lines in this block');
     }
 
     public function testAddOneLine()
@@ -44,16 +42,15 @@ class VariableAssignmentLineBlock extends atoum
 
         $this
             ->array($block->getLines())
-                ->isEqualTo(array($lineMock1))
+            ->isEqualTo(array($lineMock1))
             ->boolean($block->isValid())
-                ->isFalse()
+            ->isFalse()
             ->integer($block->getAlignment())
-                ->isEqualTo(2)
+            ->isEqualTo(2)
             ->integer($block->count())
-                ->isEqualTo(1)
+            ->isEqualTo(1)
             ->object($block->getFirstLine())
-                ->isIdenticalTo($lineMock1)
-        ;
+            ->isIdenticalTo($lineMock1);
     }
 
     public function testAddMultipleLines()
@@ -70,15 +67,14 @@ class VariableAssignmentLineBlock extends atoum
 
         $this
             ->array($block->getLines())
-                ->isEqualTo(array($lineMock1, $lineMock2, $lineMock3))
+            ->isEqualTo(array($lineMock1, $lineMock2, $lineMock3))
             ->boolean($block->isValid())
-                ->isTrue()
+            ->isTrue()
             ->integer($block->getAlignment())
-                ->isEqualTo(5)
+            ->isEqualTo(5)
             ->integer($block->count())
-                ->isEqualTo(3)
+            ->isEqualTo(3)
             ->object($block->getFirstLine())
-                ->isIdenticalTo($lineMock1)
-        ;
+            ->isIdenticalTo($lineMock1);
     }
 }

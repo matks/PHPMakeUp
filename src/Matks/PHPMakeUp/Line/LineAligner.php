@@ -30,7 +30,8 @@ class LineAligner implements LineAlignerInterface
     /**
      * Search and align variable assignments code lines in a file
      *
-     * @param  string    $filepath
+     * @param string $filepath
+     *
      * @throws Exception
      */
     public function align($filepath)
@@ -39,7 +40,7 @@ class LineAligner implements LineAlignerInterface
             throw new Exception("File $filepath does not exist");
         }
 
-        $blocks = $this->findBlocks($filepath);
+        $blocks      = $this->findBlocks($filepath);
         $validBlocks = $this->getValidBlocks($blocks);
 
         $fileLines = $this->createCleanedFile($filepath, $validBlocks);
@@ -52,16 +53,17 @@ class LineAligner implements LineAlignerInterface
     /**
      * Find in given eligible VariableAssignmentLineBlocks
      *
-     * @param  string $filepath
+     * @param string $filepath
+     *
      * @return array
      */
     private function findBlocks($filepath)
     {
         $lines = file($filepath);
 
-        $count = 0;
+        $count        = 0;
         $currentBlock = null;
-        $blocks = array();
+        $blocks       = array();
 
         foreach ($lines as $lineNumber => $line) {
 
@@ -79,7 +81,7 @@ class LineAligner implements LineAlignerInterface
 
             if (null == $currentBlock) {
                 $currentBlock = new Block();
-                $blocks[] = $currentBlock;
+                $blocks[]     = $currentBlock;
             }
 
             $eligibleLine = new Line($count, $partBefore, $partAfter);
@@ -110,7 +112,7 @@ class LineAligner implements LineAlignerInterface
                 $partAfter  = $line->getPartAfter();
 
                 $missingSpaceLength = $alignmentLength - strlen($partBefore);
-                $alignmentSpace = $this->buildAlignmentSpace($missingSpaceLength);
+                $alignmentSpace     = $this->buildAlignmentSpace($missingSpaceLength);
 
                 $fileLines[$lineNumber] = $partBefore . $alignmentSpace . '=' . $partAfter . PHP_EOL;
             }
@@ -122,7 +124,8 @@ class LineAligner implements LineAlignerInterface
     /**
      * Build alignment space
      *
-     * @param  integer $length
+     * @param integer $length
+     *
      * @return string
      */
     private function buildAlignmentSpace($length)
@@ -138,7 +141,8 @@ class LineAligner implements LineAlignerInterface
     /**
      * Filter valid blocks from given array of VariableAssignmentLineBlock
      *
-     * @param  array $blocks array of VariableAssignmentLineBlock
+     * @param array $blocks array of VariableAssignmentLineBlock
+     *
      * @return array of valid VariableAssignmentLineBlock
      */
     private function getValidBlocks(array $blocks)

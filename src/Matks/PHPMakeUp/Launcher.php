@@ -34,10 +34,10 @@ class Launcher
     }
 
     /**
-	 * Construct PHPCleaner instance with its dependencies
+     * Construct PHPCleaner instance with its dependencies
      *
-	 * @return PHPCleaner
-	 */
+     * @return PHPCleaner
+     */
     private function setup()
     {
         $fileManager = new FileManager();

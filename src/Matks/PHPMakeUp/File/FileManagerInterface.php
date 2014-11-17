@@ -6,8 +6,8 @@ interface FileManagerInterface
 {
     /**
      * @param string $filepath
-	 * @param array  $lines
-	 */
+     * @param array  $lines
+     */
     public function writeFile($filepath, array $lines);
 
     /**

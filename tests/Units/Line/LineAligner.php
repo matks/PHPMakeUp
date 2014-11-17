@@ -14,19 +14,18 @@ class LineAligner extends atoum
     public function testConstruct()
     {
         $fileManagerMock = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
-        $aligner = new Line\LineAligner($fileManagerMock);
+        $aligner         = new Line\LineAligner($fileManagerMock);
 
         $this
             ->class(get_class($aligner))
-                ->hasInterface('\Matks\PHPMakeUp\Line\LineAlignerInterface')
-        ;
+            ->hasInterface('\Matks\PHPMakeUp\Line\LineAlignerInterface');
     }
 
     public function testAlign()
     {
         $fileManagerMock = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
-        $testFilename = 'aClass.php';
-        $copyFilename = 'aClass.php.copy';
+        $testFilename    = 'aClass.php';
+        $copyFilename    = 'aClass.php.copy';
 
         $aligner = new Line\LineAligner($fileManagerMock);
 
@@ -39,9 +38,8 @@ class LineAligner extends atoum
 
         $this
             ->mock($fileManagerMock)
-                ->call('writeFile')
-                    ->withIdenticalArguments($copyFilepath, $expectedContent)
-                    ->once()
-        ;
+            ->call('writeFile')
+            ->withIdenticalArguments($copyFilepath, $expectedContent)
+            ->once();
     }
 }
