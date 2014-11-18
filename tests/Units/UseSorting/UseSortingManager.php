@@ -1,38 +1,38 @@
 <?php
 
-namespace Matks\PHPMakeUp\tests\Units\LineAlignment;
+namespace Matks\PHPMakeUp\tests\Units\UseSorting;
 
-use Matks\PHPMakeUp\LineAlignment;
+use Matks\PHPMakeUp\UseSorting;
 
 use \atoum;
 use Mock;
 
-class LineAligner extends atoum
+class UseSortingManager extends atoum
 {
     use \Matks\PHPMakeUpTest\FixtureManager;
 
     public function testConstruct()
     {
         $fileManagerMock = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
-        $aligner         = new LineAlignment\LineAligner($fileManagerMock);
+        $manager         = new UseSorting\UseSortingManager($fileManagerMock);
 
         $this
-            ->class(get_class($aligner))
-            ->hasInterface('\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface');
+            ->class(get_class($manager))
+            ->hasInterface('\Matks\PHPMakeUp\UseSorting\UseSortingManagerInterface');
     }
 
-    public function testAlign()
+    public function testSort()
     {
         $fileManagerMock  = new Mock\Matks\PHPMakeUp\File\FileManagerInterface();
         $testFilename     = 'aClass.php';
-        $expectedFilename = 'aClass.php.aligned';
+        $expectedFilename = 'aClass.php.sorted';
         $copyFilename     = 'aClass.php.copy';
 
-        $aligner = new LineAlignment\LineAligner($fileManagerMock);
+        $manager = new UseSorting\UseSortingManager($fileManagerMock);
 
         $testFilepath = $this->getTestDirectory() . $testFilename;
         $copyFilepath = $this->getTestDirectory() . $copyFilename;
-        $aligner->align($testFilepath);
+        $manager->sort($testFilepath);
 
         $expectedFilepath = $this->getExpectedFilesDirectory() . $expectedFilename;
         $expectedContent  = file($expectedFilepath);

@@ -11,14 +11,16 @@ class PHPCleaner extends atoum
 {
     public function testConstruct()
     {
-        $aligner = new Mock\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface();
-        $cleaner = new PHPMakeUp\PHPCleaner($aligner);
+        $aligner    = new Mock\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface();
+        $useManager = new Mock\Matks\PHPMakeUp\UseSorting\UseSortingManagerInterface();
+        $cleaner    = new PHPMakeUp\PHPCleaner($aligner, $useManager);
     }
 
     public function testClean()
     {
-        $aligner = new Mock\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface();
-        $cleaner = new PHPMakeUp\PHPCleaner($aligner);
+        $aligner    = new Mock\Matks\PHPMakeUp\LineAlignment\LineAlignerInterface();
+        $useManager = new Mock\Matks\PHPMakeUp\UseSorting\UseSortingManagerInterface();
+        $cleaner    = new PHPMakeUp\PHPCleaner($aligner, $useManager);
 
         $path = './.././..';
         $cleaner->clean($path);
@@ -26,6 +28,10 @@ class PHPCleaner extends atoum
         $this
             ->mock($aligner)
             ->call('align')
+            ->withIdenticalArguments($path)
+            ->once()
+            ->mock($useManager)
+            ->call('sort')
             ->withIdenticalArguments($path)
             ->once();
     }

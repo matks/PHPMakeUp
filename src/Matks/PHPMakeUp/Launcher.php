@@ -4,6 +4,7 @@ namespace Matks\PHPMakeUp;
 
 use Matks\PHPMakeUp\File\FileManager;
 use Matks\PHPMakeUp\LineAlignment\LineAligner;
+use Matks\PHPMakeUp\UseSorting\UseSortingManager;
 
 /**
  * PHPMakeUp Launcher
@@ -21,7 +22,7 @@ class Launcher
     public static function main($filepath)
     {
         $launcher = new Launcher();
-        $launcher->run((string) $filepath);
+        $launcher->run((string)$filepath);
     }
 
     /**
@@ -44,10 +45,11 @@ class Launcher
      */
     private function setup()
     {
-        $fileManager = new FileManager();
-        $lineAligner = new LineAligner($fileManager);
+        $fileManager       = new FileManager();
+        $lineAligner       = new LineAligner($fileManager);
+        $useSortingManager = new UseSortingManager($fileManager);
 
-        $phpCleaner = new phpCleaner($lineAligner);
+        $phpCleaner = new phpCleaner($lineAligner, $useSortingManager);
 
         return $phpCleaner;
     }

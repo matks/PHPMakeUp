@@ -2,8 +2,8 @@
 
 namespace Matks\Tests\Random;
 
-use Matks\Tests\Random\Foo as Foo;
 use Matks\Tests\Random\Abc;
+use Matks\Tests\Random\Foo as Foo;
 
 class aClass
 {
