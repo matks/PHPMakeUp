@@ -4,8 +4,8 @@ namespace Matks\PHPMakeUp\tests\Units\UseSorting;
 
 use Matks\PHPMakeUp\UseSorting;
 
-use \atoum;
 use Mock;
+use \atoum;
 
 class UseStatementBlock extends atoum
 {

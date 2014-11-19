@@ -2,9 +2,9 @@
 
 namespace Matks\PHPMakeUp\UseSorting;
 
+use Exception;
 use Matks\PHPMakeUp\File\FileManagerInterface;
 use Matks\PHPMakeUp\UseSorting\UseStatementBlock;
-use Exception;
 
 /**
  * Use Sorting Manager

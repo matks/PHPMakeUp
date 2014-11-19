@@ -4,8 +4,8 @@ namespace Matks\PHPMakeUp\tests\Units\LineAlignment;
 
 use Matks\PHPMakeUp\LineAlignment;
 
-use \atoum;
 use Mock;
+use \atoum;
 
 class VariableAssignmentLineBlock extends atoum
 {

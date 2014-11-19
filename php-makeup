@@ -1,0 +1,15 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+	echo "php-makeup <folder>"
+	exit
+fi
+
+count=1
+
+for i in $(find $1 -type f -not -path "*vendor/*" -name '*.php'); do
+    php ./php-make-up.php $i
+    echo -e '\t'$count') '"${i#./}"
+    count=$[count +1]
+done

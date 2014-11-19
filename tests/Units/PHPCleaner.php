@@ -4,8 +4,8 @@ namespace Matks\PHPMakeUp\tests\Units;
 
 use Matks\PHPMakeUp;
 
-use \atoum;
 use Mock;
+use \atoum;
 
 class PHPCleaner extends atoum
 {

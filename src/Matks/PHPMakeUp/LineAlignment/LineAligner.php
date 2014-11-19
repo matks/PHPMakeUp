@@ -2,10 +2,10 @@
 
 namespace Matks\PHPMakeUp\LineAlignment;
 
-use Matks\PHPMakeUp\File\FileManagerInterface;
-use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLineBlock as Block;
-use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine as Line;
 use Exception;
+use Matks\PHPMakeUp\File\FileManagerInterface;
+use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine as Line;
+use Matks\PHPMakeUp\LineAlignment\VariableAssignmentLineBlock as Block;
 
 /**
  * Line Alignment manager
@@ -44,8 +44,6 @@ class LineAligner implements LineAlignerInterface
         $validBlocks = $this->getValidBlocks($blocks);
 
         $fileLines = $this->createCleanedFile($filepath, $validBlocks);
-
-        file_put_contents('a.test', $fileLines);
 
         $newFilepath = $filepath . '.copy';
         $this->fileManager->writeFile($newFilepath, $fileLines);
