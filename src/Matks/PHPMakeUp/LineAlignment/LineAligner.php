@@ -15,7 +15,7 @@ class LineAligner implements LineAlignerInterface
     /**
      * Variable assignment code line regex
      */
-    const VARIABLE_ASSIGNMENT_REGEX = '([^=]*)=(.*)$';
+    const VARIABLE_ASSIGNMENT_REGEX = '^([^=\(]*)=(.*)$';
 
     /**
      * Constructor
@@ -44,6 +44,8 @@ class LineAligner implements LineAlignerInterface
         $validBlocks = $this->getValidBlocks($blocks);
 
         $fileLines = $this->createCleanedFile($filepath, $validBlocks);
+
+        file_put_contents('a.test', $fileLines);
 
         $newFilepath = $filepath . '.copy';
         $this->fileManager->writeFile($newFilepath, $fileLines);

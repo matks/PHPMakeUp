@@ -18,6 +18,10 @@ class aClass
         $test = $this->aPrivateFunction();
 
         $example = 'Foo';
+        if ($example == 1) {
+            $b = 3;
+            $cd = 6;
+        }
 
         $example2 = 'This is a test file';
         $example3 = 'Again';
