@@ -7,6 +7,7 @@ Features
 --------
 
 * variables assignment alignment
+* use statements ordering
 
 Running PHPMakeUp
 -----------------
@@ -15,3 +16,9 @@ Run the following command:
 ```bash
 $ php php-make-up.php <filepath>
 ```
+
+TODO
+----
+
+Fix:
+- process differently variables assignment for '.=', '=' and '=>' characters
