@@ -31,7 +31,7 @@ vendor/bin/atoum -bf vendor/autoload.php -d tests/Units/
 
 Run the following command:
 ```bash
-$ php php-make-up.php <filepath>
+$ bash php-makeup <folder>
 ```
 
 ## Todo
