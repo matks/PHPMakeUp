@@ -2,8 +2,6 @@
 
 namespace Matks\PHPMakeUp\UseSorting;
 
-use Matks\PHPMakeUp\UseSorting\UseStatement;
-
 class UseStatementBlock
 {
     /**

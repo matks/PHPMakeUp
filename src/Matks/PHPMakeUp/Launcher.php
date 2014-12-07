@@ -22,7 +22,7 @@ class Launcher
     public static function main($filepath)
     {
         $launcher = new Launcher();
-        $launcher->run((string)$filepath);
+        $launcher->run((string) $filepath);
     }
 
     /**
