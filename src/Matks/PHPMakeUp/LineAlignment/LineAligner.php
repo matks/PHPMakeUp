@@ -15,7 +15,15 @@ class LineAligner implements LineAlignerInterface
     /**
      * Variable assignment code line regex
      */
-    const VARIABLE_ASSIGNMENT_REGEX = '^([^=\(]*)=(.*)$';
+    const VARIABLE_ASSIGNMENT_REGEX_BEGIN = '^([^=\(]*)\s';
+    const VARIABLE_ASSIGNMENT_REGEX_END   = '\s(.*)$';
+
+    private $allAssignmentCharacters = array(
+        '=',
+        '=>',
+        '\.=',
+        '<=',
+    );
 
     /**
      * Constructor
@@ -47,6 +55,7 @@ class LineAligner implements LineAlignerInterface
 
         $newFilepath = $filepath . '.copy';
         $this->fileManager->writeFile($newFilepath, $fileLines);
+
         $this->fileManager->replaceFile($filepath, $newFilepath);
     }
 
@@ -68,19 +77,34 @@ class LineAligner implements LineAlignerInterface
         foreach ($lines as $lineNumber => $line) {
 
             $matches = array();
-            $result  = preg_match('#' . static::VARIABLE_ASSIGNMENT_REGEX . '#', $line, $matches);
 
-            if (0 === $result) {
+            if (null !== $currentBlock) {
+                $assignmentCharacters = array($currentBlock->getAssignmentCharacter());
+                $pattern = $this->buildVariableAssignmentLinePattern($assignmentCharacters);
+
+                $result  = preg_match($pattern, $line, $matches);
+                $patternDoesNotMatch = (0 === $result);
+                if ($patternDoesNotMatch) {
+                    $currentBlock = null;
+                }
+            }
+
+            $pattern = $this->buildVariableAssignmentLinePattern($this->allAssignmentCharacters);
+
+            $result  = preg_match($pattern, $line, $matches);
+            $patternDoesNotMatch = (0 === $result);
+            if ($patternDoesNotMatch) {
                 $currentBlock = null;
                 $count++;
                 continue;
             }
 
-            $partBefore = $matches[1];
-            $partAfter  = $matches[2];
+            $partBefore          = $matches[1];
+            $assignmentCharacter = $matches[2];
+            $partAfter           = $matches[3];
 
             if (null == $currentBlock) {
-                $currentBlock = new Block();
+                $currentBlock = new Block($assignmentCharacter);
                 $blocks[]     = $currentBlock;
             }
 
@@ -98,6 +122,8 @@ class LineAligner implements LineAlignerInterface
      *
      * @param string $filepath
      * @param array  $blocks
+     *
+     * @return array
      */
     private function createCleanedFile($filepath, array $blocks)
     {
@@ -111,14 +137,46 @@ class LineAligner implements LineAlignerInterface
                 $partBefore = $line->getPartBefore();
                 $partAfter  = $line->getPartAfter();
 
-                $missingSpaceLength = $alignmentLength - strlen($partBefore);
-                $alignmentSpace     = $this->buildAlignmentSpace($missingSpaceLength);
+                $missingSpaceLength  = $alignmentLength - strlen($partBefore);
+                $alignmentSpace      = $this->buildAlignmentSpace($missingSpaceLength);
+                $assignmentCharacter = $block->getAssignmentCharacter();
 
-                $fileLines[$lineNumber] = $partBefore . $alignmentSpace . '=' . $partAfter . PHP_EOL;
+                $fileLines[$lineNumber] = $partBefore . $alignmentSpace . ' ' . $assignmentCharacter . ' ' . $partAfter . PHP_EOL;
             }
         }
 
         return $fileLines;
+    }
+
+    /**
+     * @param array $assignmentCharacters
+     *
+     * @return string
+     */
+    private function buildVariableAssignmentLinePattern(array $assignmentCharacters)
+    {
+        if (empty($assignmentCharacters)) {
+            throw new \RuntimeException('No assignment characters provided');
+        }
+
+        $charactersRegex = '(';
+        $length = count($assignmentCharacters);
+
+        for ($i = 0; $i < $length; $i++) {
+            $character = $assignmentCharacters[$i];
+
+            if (($length - 1) === $i) {
+                $charactersRegex .= $character;
+            } else {
+                $charactersRegex .= $character . '|';
+            }
+        }
+
+        $charactersRegex .= ')';
+
+        $pattern = '#' . static::VARIABLE_ASSIGNMENT_REGEX_BEGIN . $charactersRegex . static::VARIABLE_ASSIGNMENT_REGEX_END . '#';
+
+        return $pattern;
     }
 
     /**

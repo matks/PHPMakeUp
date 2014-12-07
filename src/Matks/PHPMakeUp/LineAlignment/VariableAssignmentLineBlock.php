@@ -21,11 +21,20 @@ class VariableAssignmentLineBlock
     /**
      * @var string
      */
+    private $assignmentCharacter;
+
+    /**
+     * @var string
+     */
     private $status;
 
-    public function __construct()
+    /**
+     * @param string $assignmentCharacter
+     */
+    public function __construct($assignmentCharacter)
     {
         $this->status = static::STATUS_NEW;
+        $this->assignmentCharacter = $assignmentCharacter;
     }
 
     /**
@@ -64,6 +73,14 @@ class VariableAssignmentLineBlock
     public function getLines()
     {
         return $this->lines;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAssignmentCharacter()
+    {
+        return $this->assignmentCharacter;
     }
 
     /**

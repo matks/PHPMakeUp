@@ -11,7 +11,7 @@ class VariableAssignmentLineBlock extends atoum
 {
     public function testConstruct()
     {
-        $block = new LineAlignment\VariableAssignmentLineBlock();
+        $block = new LineAlignment\VariableAssignmentLineBlock('a');
 
         $this
             ->array($block->getLines())
@@ -36,7 +36,7 @@ class VariableAssignmentLineBlock extends atoum
     {
         $lineMock1 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(5, '2 ', 'foo');
 
-        $block = new LineAlignment\VariableAssignmentLineBlock();
+        $block = new LineAlignment\VariableAssignmentLineBlock('a');
 
         $block->addLine($lineMock1);
 
@@ -59,7 +59,7 @@ class VariableAssignmentLineBlock extends atoum
         $lineMock2 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(6, 'aaaa ', 'b');
         $lineMock3 = new Mock\Matks\PHPMakeUp\LineAlignment\VariableAssignmentLine(7, 'j  ', ' b');
 
-        $block = new LineAlignment\VariableAssignmentLineBlock();
+        $block = new LineAlignment\VariableAssignmentLineBlock('=');
 
         $block->addLine($lineMock1);
         $block->addLine($lineMock2);
