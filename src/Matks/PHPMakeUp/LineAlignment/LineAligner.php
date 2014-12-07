@@ -80,9 +80,9 @@ class LineAligner implements LineAlignerInterface
 
             if (null !== $currentBlock) {
                 $assignmentCharacters = array($currentBlock->getAssignmentCharacter());
-                $pattern = $this->buildVariableAssignmentLinePattern($assignmentCharacters);
+                $pattern              = $this->buildVariableAssignmentLinePattern($assignmentCharacters);
 
-                $result  = preg_match($pattern, $line, $matches);
+                $result              = preg_match($pattern, $line, $matches);
                 $patternDoesNotMatch = (0 === $result);
                 if ($patternDoesNotMatch) {
                     $currentBlock = null;
@@ -91,7 +91,7 @@ class LineAligner implements LineAlignerInterface
 
             $pattern = $this->buildVariableAssignmentLinePattern($this->allAssignmentCharacters);
 
-            $result  = preg_match($pattern, $line, $matches);
+            $result              = preg_match($pattern, $line, $matches);
             $patternDoesNotMatch = (0 === $result);
             if ($patternDoesNotMatch) {
                 $currentBlock = null;
@@ -160,7 +160,7 @@ class LineAligner implements LineAlignerInterface
         }
 
         $charactersRegex = '(';
-        $length = count($assignmentCharacters);
+        $length          = count($assignmentCharacters);
 
         for ($i = 0; $i < $length; $i++) {
             $character = $assignmentCharacters[$i];

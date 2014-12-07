@@ -33,7 +33,7 @@ class VariableAssignmentLineBlock
      */
     public function __construct($assignmentCharacter)
     {
-        $this->status = static::STATUS_NEW;
+        $this->status              = static::STATUS_NEW;
         $this->assignmentCharacter = $assignmentCharacter;
     }
 
