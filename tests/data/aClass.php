@@ -55,8 +55,19 @@ class aClass
         $test = 'foo';
         $a = array(
             1 => 'a',
-            22 => 'b');
+            22 => 'b',
+            757 => 'stop');
         $b = 7;
         $ab = 78;
+
+        $text0 = 'a';
+        $text01 = '';
+        $text012 = '6';
+
+        $text01234 = 'seven';
+        $text0 .= 'b';
+        $text0 .= 'c';
+        $text012 .= ' and 8';
+        $text0 .= 'd';
     }
 }
