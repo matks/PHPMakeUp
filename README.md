@@ -33,8 +33,3 @@ Run the following command:
 ```bash
 $ bash php-makeup <folder>
 ```
-
-## Todo
-
-Fix:
-- process differently variables assignment for '.=', '=' and '=>' characters
