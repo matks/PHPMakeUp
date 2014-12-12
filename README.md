@@ -38,3 +38,7 @@ Run the following command:
 ```bash
 $ bash php-makeup <folder>
 ```
+
+## Incoming features:
+
+* phpDoc consistency
