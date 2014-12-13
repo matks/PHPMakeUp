@@ -2,7 +2,6 @@
 composer.phar
 vendor/*
 
-
 # Vagrant
 .vagrant/
 # Puppet
@@ -13,33 +12,6 @@ vendor/*
 
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 .idea/
-
-
-# Netbeans
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
-nbactions.xml
-nb-configuration.xml
-
-
-# Emacs
-*~
-\#*\#
-auto-save-list
-.\#*
-
-
-# Vim
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-*.un~
-Session.vim
-.netrwhist
-*~
-
 
 # Notepad++ backups #
 *.bak
