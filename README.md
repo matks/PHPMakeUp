@@ -1,5 +1,5 @@
 PHPMakeUp
-==========
+=========
 
 [![Latest Stable Version](https://poser.pugx.org/matks/php-makeup/v/stable.svg)](https://packagist.org/packages/matks/php-makeup)
 [![Build Status](https://travis-ci.org/matks/PHPMakeUp.png)](https://travis-ci.org/matks/PHPMakeUp)
